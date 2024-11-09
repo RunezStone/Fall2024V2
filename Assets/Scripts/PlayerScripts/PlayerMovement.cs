@@ -8,7 +8,13 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    [SerializeField] private Rigidbody2D shootSpawn;
+
     private Vector2 direction;
+
+    // we want mouse pos for animation and shooiting
+    public Vector2 mousePos;
+    public Camera cam;
 
     void Start()
     {
@@ -18,10 +24,21 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void FixedUpdate()
     {
         rb.velocity = direction * movementSpeed;
+
+        anglePos();
+    }
+
+    private void anglePos()
+    {
+        Vector2 lookDirection = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+        shootSpawn.rotation = angle;
     }
 }

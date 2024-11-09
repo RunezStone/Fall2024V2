@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu]
 public class Weapon : Item
 {
     private float durability;
+
+    public GameObject bulletPrefab;
+    public WeaponBehavior weaponBehavior;
 
 
     private int maxAmmo = 10;
