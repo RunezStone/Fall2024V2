@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (collision.tag == "Hit")
         {
-            TakeDamage(collision.GetComponent<BulletData>().damage);
+            TakeDamage(collision.GetComponent<HitData>().damage);
             CheckDead();
         }
 
