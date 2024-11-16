@@ -2,15 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class BulletData : ScriptableObject
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(CircleCollider2D))]
+public class BulletData : MonoBehaviour
 {
-    float damage = 10f;
+    private SpriteRenderer sprite;
+
+    public float damage = 10f;
     public Type damageType;
 
-    void OnTriggerEnter()
+    public Sprite bullet;
+
+    void Start()
     {
-        Destroy(this);
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.sprite = bullet;
     }
 
+    void OnTriggerEnter2D()
+    {
+        Destroy(gameObject);
+    }
+        
 }
