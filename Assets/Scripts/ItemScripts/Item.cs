@@ -15,7 +15,7 @@ public abstract class Item : ScriptableObject
 
     public void DestroyItem()
     {
-
+        // Destroy(GameObject);
     }
 
 

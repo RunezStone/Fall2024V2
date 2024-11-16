@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    [SerializeField] private Rigidbody2D shootSpawn;
+    public Rigidbody2D shootSpawn;
 
     private Vector2 direction;
 
@@ -40,5 +40,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDirection = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
         shootSpawn.rotation = angle;
+
     }
 }

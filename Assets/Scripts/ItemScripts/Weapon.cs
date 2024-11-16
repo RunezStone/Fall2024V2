@@ -12,8 +12,9 @@ public class Weapon : Item
     public WeaponBehavior weaponBehavior;
 
 
+    [SerializeField]
     private int maxAmmo = 10;
-    private int currAmmo = 0;
+    public int currAmmo = 0;
 
     public Weapon(float currDurability, int currAmmo)
     {
@@ -23,6 +24,7 @@ public class Weapon : Item
 
     public override void UseItem()
     {
+        weaponBehavior.Fire(bulletPrefab);
         currAmmo--;
         if (currAmmo <= 0)
         {

@@ -17,7 +17,7 @@ public class InventoryHandler : MonoBehaviour
     bool canPickUp = false;
     public GameObject groundItem;
 
-    
+    private int inventoryIndex = 0;
 
     public PlayerMovement playMove;
 
@@ -35,10 +35,10 @@ public class InventoryHandler : MonoBehaviour
     {
         // swapping item
         //probably better way but idk yet, get it to work first
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { SwapItem(inventory[0]); }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { SwapItem(inventory[1]); }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { SwapItem(inventory[2]); }           
-        if (Input.GetKeyDown(KeyCode.Alpha4)) { SwapItem(inventory[3]); }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { SwapItem(inventory[0], 0); }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { SwapItem(inventory[1], 1); }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { SwapItem(inventory[2], 2); }           
+        if (Input.GetKeyDown(KeyCode.Alpha4)) { SwapItem(inventory[3], 3); }
 
         if (canPickUp && Input.GetKeyDown(KeyCode.E))
         {
@@ -78,8 +78,10 @@ public class InventoryHandler : MonoBehaviour
         Instantiate(currentItem, playMove.rb.transform.position, Quaternion.identity);
         Destroy(currentItem);
     }
-    public void SwapItem(Item newItem)
+    public void SwapItem(Item newItem, int index)
     {
+        inventoryIndex = index;
+        
        if (newItem != null)
         {
             currentItem = newItem;
@@ -96,7 +98,8 @@ public class InventoryHandler : MonoBehaviour
 
     public void PickUpItem()
     {
-        SwapItem(groundItem.GetComponent<EnemyDrops>().item);
+        inventory[inventoryIndex] = groundItem.GetComponent<EnemyDrops>().item;
+        SwapItem(groundItem.GetComponent<EnemyDrops>().item, inventoryIndex);
         Destroy(groundItem);
     }
 
