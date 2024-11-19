@@ -10,13 +10,16 @@ public enum GameState
 }
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
+    public static GameObject Player;
     public GameState state;
 
+    public static GameManager Instance{ get; private set; }
+
+    
     private void Awake()
     {
-        instance = this;  
+        Instance = this;
     }
+
 
 }
